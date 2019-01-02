@@ -15,7 +15,7 @@ while True:
     print("請重新輸入好ㄇ!")
 
   
-
+times = 0  #計算第一次結束後不要玩的次數
 
 while playornot:
   print('注意！你只有10次機會！！')
@@ -60,11 +60,16 @@ while playornot:
   playagain = str()
   while True:
     playagain = input("要再玩一次嗎？ Y/N")
-    if playagain == 'Y' or playagain == 'N':
+    if playagain == 'Y' or playagain == 'y':
+      playornot = True
       break
+    if playagain == 'N' or playagain == 'n':
+      print("真的不玩了嗎?很好玩ㄟ")
+      times += 1
+      if times == 3:
+        print("好啦不玩就不玩")
+        print("沒電影看還不玩")
+        playornot = False
+        break
     else:
       print("請再輸入一次！")
-  #這邊要寫if playagain ==怎樣就會怎樣
-    
-
-  
