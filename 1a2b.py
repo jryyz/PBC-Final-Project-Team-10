@@ -1,7 +1,7 @@
 import random
+game = True
 
-
-while True:
+while game:
   a = input("嗨挑戰者！我們來玩1A2B吧！ Y/N")
   if a == "Y" or a == "y" :
     playornot = True
@@ -27,12 +27,12 @@ while playornot:
   time = 0
 
   while time < 10:
-    challenger = input("已嘗試次數：%d 請輸入數字" %time)
+    challenger = input("已嘗試次數：%d 請輸入數字 : " %time)
     time += 1
     A = 0
     B = 0
     
-    if len(challenger)!= 4  :
+    if len(challenger)!= 4 or not challenger.isnumeric() or len({str(chr) for chr in challenger}) != 4 :
       time -=1
       print("不符合輸入格式，請重新輸入")
     
@@ -60,11 +60,15 @@ while playornot:
   playagain = str()
   while True:
     playagain = input("要再玩一次嗎？ Y/N")
-    if playagain == 'Y' or playagain == 'N':
+    if playagain == 'Y' or playagain == 'y':
+      break
+    elif  playagain == 'N' or playagain == 'n':
+      playornot = False
+      print("BYE！ ")
       break
     else:
       print("請再輸入一次！")
-  #這邊要寫if playagain ==怎樣就會怎樣
+  #
     
 
   
