@@ -84,7 +84,6 @@ def fuction(name,url,starttimehour,starttimeminute,endtimehour,endtimeminute):
 
 def function2(keyword):
 	import requests
-	import webbrowser
 
 	movie_keyword = {'keyword': keyword}
 	r = requests.get('https://movies.yahoo.com.tw/moviesearch_result.html' , params= movie_keyword)#先找搜尋頁面
@@ -104,19 +103,47 @@ def function2(keyword):
 	Soup2 = BeautifulSoup(p.text, 'html.parser')
 	movie_introduction = 'div.gray_infobox_inner'
 	article5 = Soup2.select(movie_introduction)
+	movie_usercomment = 'form#form_good1.form_good span'
+	article6 = Soup2.select(movie_usercomment)
 
-	introduction = str()
+
+	introduction = str()#劇情介紹
 	for art in article5:
-	  art = str(art)
-	  num = art.find('<span>')
-	  num2 = art.find('</span')
-	  introduction = art[num+6:num2]
-	  introduction.strip('</br>')
-	  
+		art = str(art)
+		num = art.find('<span>')
+		num2 = art.find('</span')
+		introduction = art[num+6:num2]
+		introduction.strip('</br>')
+	
+	usercomment = list()#影評
+	filter = 1
+	
+
+	for art in article6:
+		art = str(art)
+		num = art.find('<span>')
+		num2 = art.find('</span')
+		onecomment = art[num+6:num2]
+		if filter % 3 == 0:
+			usercomment.append(onecomment)
+
+		filter += 1
+
+	print()
+	print("劇情介紹：" , end = "")
 	print(introduction)
+	print("網友短評（僅限參考）：")
+	
+	for i in range(len(usercomment)):
+		print('網友%d說: ' %(i+1))
+		print('  ' + usercomment[i])
+
+		
+	
+
 	return
 
-print('查詢時間請按"1",查詢電影影評請按"2"')	#服務開始介面
+print('查詢時間請按"1",查詢電影介紹和影評請按"2"')	#服務開始介面
 opening = input('請選擇服務項目:')
 if opening == '1':
 	starthour=input('起始小時:')
