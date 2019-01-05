@@ -126,7 +126,6 @@ def function2(keyword):
 		onecomment = art[num+6:num2]
 		if filter % 3 == 0:
 			usercomment.append(onecomment)
-
 		filter += 1
 
 	print()
@@ -143,27 +142,52 @@ def function2(keyword):
 
 	return
 
-print('查詢時間請按"1",查詢電影介紹和影評請按"2"')	#服務開始介面
-opening = input('請選擇服務項目:')
-if opening == '1':
-	starthour=input('起始小時:')
-	startminute=input('起始分鐘:')
+conti = True
+while conti:
 	
-	endhour=input('結束小時:')
-	endminute=input('結束分鐘:')
+	print('查詢時間請按"1",查詢電影劇情介紹請按"2"')	#服務開始介面
+	opening = input('請選擇服務項目:')
+	if opening == '1':
+		starthour=input('起始小時:')
+		startminute=input('起始分鐘:')
 	
-	fuction("東南亞秀泰影城",'https://movies.yahoo.com.tw/theater_result.html/id=53',starthour,startminute,endhour,endminute)
-	fuction("百老匯數位影城",'https://movies.yahoo.com.tw/theater_result.html/id=52',starthour,startminute,endhour,endminute)
-	fuction("梅花數位影院",'https://movies.yahoo.com.tw/theater_result.html/id=126',starthour,startminute,endhour,endminute)	
+		endhour=input('結束小時:')
+		endminute=input('結束分鐘:')
+	
+		fuction("東南亞秀泰影城",'https://movies.yahoo.com.tw/theater_result.html/id=53',starthour,startminute,endhour,endminute)
+		fuction("百老匯數位影城",'https://movies.yahoo.com.tw/theater_result.html/id=52',starthour,startminute,endhour,endminute)
+		fuction("梅花數位影院",'https://movies.yahoo.com.tw/theater_result.html/id=126',starthour,startminute,endhour,endminute)	
 
-	print("滿意度 (滿分為五顆星)")
+		print("滿意度 (滿分為五顆星)")
+		print()
+		scoreorder = sorted( [ [-satis[key],key] for key in satis ] )  #用前者VALUE排序
+		for i in range(len(satis)):
+			k = scoreorder[i][1]
+			if str(-scoreorder[i][0]) == '0.0':
+				print('尚無評價    '+k)
+			else:
+				print(str(-scoreorder[i][0])+' stars   '+k)
+		conti = False
+	elif opening == '2':
+		name = input('請輸入電影名稱:')
+		function2(name)
+		conti = False
+	elif opening != '1' or opening != '2':
+	 
+		 print('輸入錯誤，請重試')
+		 conti = True
 	print()
-	scoreorder = sorted( [ [-satis[key],key] for key in satis ] )  #用前者VALUE排序
-	for i in range(len(satis)):
-		k = scoreorder[i][1]
-		print(str(-scoreorder[i][0])+' stars   '+k)
-
-if opening == '2':
-	name = input('請輸入電影名稱:')
-	function2(name)
-
+	
+	while conti == False:
+		contd = input('是否繼續使用？(Y/N):')
+		if contd == 'N' or contd == 'n':
+			break
+		elif contd == 'Y' or contd == 'y':
+			
+			conti = True
+			break
+		else:
+			print('輸入錯誤，請重新輸入：')
+			
+			conti = False
+			continue 
