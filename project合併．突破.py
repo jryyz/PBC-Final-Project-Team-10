@@ -167,7 +167,7 @@ while conti:
 				print(str(-scoreorder[i][0])+' stars   '+k)
 		conti = False
 
-		greeting = input('是否要搜尋電影簡介和評論?(y/n)')
+		greeting = input('是否要搜尋電影簡介和評論?(Y/N)')
 		if greeting == 'N' or greeting == 'n':
 			use2 = False
 			conti = False
@@ -196,7 +196,7 @@ while conti:
 		game = True
 
 		while game:
-			a = input("嗨挑戰者！我們來玩1A2B吧！ Y/N")
+			a = input("嗨挑戰者！我們來玩1A2B吧!(Y/N)")
 			if a == "Y" or a == "y" :
 				playornot = True
 				break
