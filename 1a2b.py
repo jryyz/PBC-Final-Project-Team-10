@@ -1,10 +1,7 @@
 import random
 import os
-game = True
+playornot = True
 
-while game:
-	playornot = True
-	game = False
 
   
 times = 0  #計算第一次結束後不要玩的次數
@@ -76,7 +73,7 @@ while starttoback:
 		break
 	else:
 		print("請再輸入一次！")
-	
+
 	
 
 
