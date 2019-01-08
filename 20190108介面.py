@@ -226,8 +226,10 @@ def start():
 					window.geometry("300x300")
 					window.maxsize(500,500)
 
-					label1 = Label(window,text = "使用者您好，請選擇服務項目", width = 30,height = 5, bg = "lightyellow").pack(side = TOP)
-					label2 = Label(window,text = '以時間搜尋電影請按"1",玩小遊戲請按"2"').pack(side = TOP)
+					label1 = Label(window,text = "使用者您好，請選擇服務項目", width = 30,height = 5, bg = "lightyellow")
+					label1.pack(side = TOP)
+					label2 = Label(window,text = '以時間搜尋電影請按"1",玩小遊戲請按"2"')
+					label2.pack(side = TOP)
 
 					service = {0:"1",1:"2"}
 					useroption = IntVar()
@@ -239,13 +241,22 @@ def start():
 					window.mainloop()
 
 			else:#要就搜尋
-				name = StringVar
-				Label(window3,text = "請輸入電影名稱後按確認：", width = 20, bg = "lightblue").pack()
-				Entry(window3,width = 25, textvariable = name).pack(side = TOP)
-				Button(window3,text = "確認").pack(side = BOTTOM)#按鈕功能待設計
-				commenttext = scrolledtext.ScrolledText(window3,width = 50, height = 10, wrap = WORD) #text要用來放爬蟲結果
-				commenttext.pack(side = RIGHT) 
-				commenttext.insert(INSERT,"影評：")
+				def getcomment():
+					x = comment_entry.get()
+					commenttext.insert(INSERT,"輸入"+ x )
+
+				name = StringVar()
+				comment_label = Label(window3,text = "請輸入電影名稱後按確認：", width = 20, bg = "lightblue")
+				comment_label.pack(side = TOP)
+				comment_entry = Entry(window3,width = 25, textvariable = name)
+				comment_entry.pack(side = TOP)
+				name.set("電影名稱")
+				comment_button = Button(window3,text = "確認",command = getcomment)
+				comment_button.pack(side = BOTTOM)
+
+				commenttext = scrolledtext.ScrolledText(window3,width = 50, height = 10, wrap = WORD)
+				commenttext.pack()
+
 
 
 
@@ -350,5 +361,6 @@ useroption.set(0)
 for i in range(len(service)):
 	Radiobutton(window,text = service[i],variable = useroption,value = i).pack()
 
-Button(window,text = "確定",command = start).pack()
+start_button = Button(window,text = "確定",command = start)
+start_button.pack()
 window.mainloop()
