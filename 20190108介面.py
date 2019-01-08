@@ -195,17 +195,17 @@ def start():
 			out3 = fuction("梅花數位影院",'https://movies.yahoo.com.tw/theater_result.html/id=126')	
 			movieschedule = out1+out2+out3		
 			
+			#開演時段
+			cheduletext = scrolledtext.ScrolledText(window3,width = 50, height = 10, wrap = WORD) #text要用來放爬蟲結果
+			cheduletext.pack(side = LEFT) 
+			cheduletext.insert(INSERT,"時段："+movieschedule)
+			
+
 			#滿意度
 
 			satitext = scrolledtext.ScrolledText(window3,width = 50, height = 10, wrap = WORD) #text要用來放爬蟲結果
 			satitext.pack(side = LEFT) 
 			satitext.insert(INSERT,"滿意度：")
-
-			#開演時段
-			timetext = scrolledtext.ScrolledText(window3,width = 50, height = 10, wrap = WORD) #text要用來放爬蟲結果
-			timetext.pack(side = LEFT) 
-			timetext.insert(INSERT,movieschedule)
-			
 
 			
 			#繼續搜尋
@@ -240,7 +240,7 @@ def start():
 
 			else:#要就搜尋
 				name = StringVar
-				Label(window3,text = "請輸入電影名稱後按確認：", width = 20, bg = "lightgreen").pack(side = TOP)
+				Label(window3,text = "請輸入電影名稱後按確認：", width = 20, bg = "lightblue").pack()
 				Entry(window3,width = 25, textvariable = name).pack(side = TOP)
 				Button(window3,text = "確認").pack(side = BOTTOM)#按鈕功能待設計
 				commenttext = scrolledtext.ScrolledText(window3,width = 50, height = 10, wrap = WORD) #text要用來放爬蟲結果
