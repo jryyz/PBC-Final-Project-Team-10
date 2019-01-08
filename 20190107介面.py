@@ -5,7 +5,7 @@ from tkinter import messagebox
 from random import randint
 from tkinter import ttk
 from pprint import pprint
-
+from tkinter import scrolledtext
 
 
 #----------介面程式碼分隔線------------------------------------------------------------------------------------------
@@ -23,21 +23,24 @@ def start():
 			#2.出現爬蟲結果(第三視窗)
 		def showmovie():
 			window2.quit()
-			timeresult = starthour_combel.get()+"時"+starthmin_combel.get()+"分到"+endhour_combel.get()+"時"+endmin_combel.get()+"分間台大周邊電影院放映的電影有："
+			timeresult = starthour_combel.get()+"時"+starthmin_combel.get()+"分到"+endhour_combel.get()+"時"+endmin_combel.get()+"分間台大周邊的電影放映時段如下："
 
 			window3 = Tk()
 			window3.title("找電影中")
 			label = Label(window3, text = "您的搜尋結果如下", width = 20, bg = "lightgreen")
-			label.pack()
+			label.pack(side = TOP)
 			
-			moviebar = Scrollbar(window3)
-			movietext = Text(window3,width = 50, height = 10, wrap = WORD) #text要用來放爬蟲結果
-			moviebar.pack(side = RIGHT, fill = Y) 
-			movietext.pack(side = LEFT, fill = Y)
-			moviebar["command"] = movietext.yview
-			movietext["yscrollcommand"] = moviebar.set
 
-			movietext.insert(INSERT,timeresult)
+			#滿意度
+
+			satitext = scrolledtext.ScrolledText(window3,width = 50, height = 10, wrap = WORD) #text要用來放爬蟲結果
+			satitext.pack(side = LEFT) 
+			satitext.insert(INSERT,"滿意度：")
+
+			#開演時段
+			timetext = scrolledtext.ScrolledText(window3,width = 50, height = 10, wrap = WORD) #text要用來放爬蟲結果
+			timetext.pack(side = LEFT) 
+			timetext.insert(INSERT,timeresult)
 			
 
 			
@@ -73,9 +76,16 @@ def start():
 
 			else:#要就搜尋
 				name = StringVar
-				Button(window3,text = "確認").pack(side = BOTTOM)#按鈕功能待設計
-				Label(window3,text = "請輸入電影名稱後按確認：", width = 20, bg = "lightgreen").pack(side = BOTTOM)
-				Entry(window3,width = 25, textvariable = name).pack(side = BOTTOM)
+				Label(window3,text = "請輸入電影名稱後按確認：", width = 20, bg = "lightgreen").pack(side = TOP)
+				Entry(window3,width = 25, textvariable = name).pack(side = TOP)
+				Button(window3,text = "確認").pack(side = TOP)#按鈕功能待設計
+				
+				#影評
+
+				commenttext = scrolledtext.ScrolledText(window3,width = 50, height = 10, wrap = WORD) #text要用來放爬蟲結果
+				commenttext.pack(side = RIGHT) 
+				commenttext.insert(INSERT,"影評：")
+			
 
 
 
