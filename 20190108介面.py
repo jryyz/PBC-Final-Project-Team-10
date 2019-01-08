@@ -196,9 +196,9 @@ def start():
 			movieschedule = out1+out2+out3		
 			
 			#開演時段
-			cheduletext = scrolledtext.ScrolledText(window3,width = 50, height = 10, wrap = WORD) #text要用來放爬蟲結果
-			cheduletext.pack(side = LEFT) 
-			cheduletext.insert(INSERT,"時段："+movieschedule)
+			scheduletext = scrolledtext.ScrolledText(window3,width = 50, height = 10, wrap = WORD) #text要用來放爬蟲結果
+			scheduletext.pack(side = LEFT) 
+			scheduletext.insert(INSERT,"時段："+movieschedule)
 			
 
 			#滿意度
