@@ -1,18 +1,7 @@
 import random
-game = True
+import os
+playornot = True
 
-while game:
-	a = input("嗨挑戰者！我們來玩1A2B吧！ Y/N")
-	if a == "Y" or a == "y" :
-		playornot = True
-		break
-	elif a == "N" or a == "n" :
-		playornot = False
-		print("沒電影看還想耍任性?")
-		print("不玩就不玩啊")
-		break
-	else:
-		print("請重新輸入好ㄇ!")
 
   
 times = 0  #計算第一次結束後不要玩的次數
@@ -63,16 +52,28 @@ while playornot:
 		if playagain == 'Y' or playagain == 'y':
 			break
 		elif  playagain == 'N' or playagain == 'n':
-			print("真的不玩了嗎?很好玩ㄟ")
 			times += 1
-			if times == 2:
-				print("好啦不玩就不玩")
-				print("沒電影看還不玩")
+			if times == 1:
 				playornot = False
+				starttoback = True
 				break
 		else:
 			print("請再輸入一次！")
+def backtomainpage():
+	os.system('C:\\Users\\mikem\\Desktop\\Final-Project-Team-10\\PBC-Final-Project-Team-10\\20190107介面.py')
+while starttoback:
+	backornot = input("是否回到主程式? Y/N")
+	if backornot == 'Y' or backornot == 'y':
+		backtomainpage()
+		starttoback = False
+		break
+	elif  backornot == 'N' or backornot == 'n':
+		print("BYE")
+		starttoback = False
+		break
+	else:
+		print("請再輸入一次！")
 
-    
+	
 
 
