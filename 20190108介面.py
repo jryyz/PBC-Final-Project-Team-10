@@ -243,7 +243,7 @@ def start():
 			else:#要就搜尋
 				def getcomment():
 					x = comment_entry.get()
-					commenttext.insert(INSERT,"輸入"+ x )
+					commenttext.insert(INSERT, function2(x) )
 
 				name = StringVar()
 				comment_label = Label(window3,text = "請輸入電影名稱後按確認：", width = 20, bg = "lightblue")
@@ -256,6 +256,12 @@ def start():
 
 				commenttext = scrolledtext.ScrolledText(window3,width = 50, height = 10, wrap = WORD)
 				commenttext.pack()
+
+				
+
+				
+
+			
 
 
 
