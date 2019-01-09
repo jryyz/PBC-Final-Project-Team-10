@@ -212,7 +212,7 @@ def start():
 			search_messagebox = messagebox.askokcancel("還想知道更多", "是否要搜尋電影簡介和評論?")
 			#不要就出現對話框
 			if search_messagebox == False:
-				comfirm_messagebox = messagebox.askokcancel("對話視窗", "是否繼續使用？")
+				comfirm_messagebox = messagebox.askokcancel("對話視窗", "是否繼續使用程式？")
 				#還是不要就離開
 				if comfirm_messagebox == False:
 					messagebox.showinfo("對話方塊","感謝您的支持，我們下次再會!")
