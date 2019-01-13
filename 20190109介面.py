@@ -1,4 +1,3 @@
-#請把420行改為程式路徑
 import random
 from tkinter import*
 from tkinter import messagebox
@@ -6,7 +5,6 @@ from random import randint
 from tkinter import ttk
 from pprint import pprint
 from tkinter import scrolledtext
-import os
 #----------函數程式碼分隔線------------------------------------------------------------------------------------------
 satis = dict()
 
@@ -223,25 +221,9 @@ def start():
 
 				#改要重頭開始
 				else:
-					window = Tk()
-					window.title("不上課要幹嘛")
-					window.geometry("300x300")
-					window.maxsize(500,500)
-
-					label1 = Label(window,text = "使用者您好，請選擇服務項目", width = 30,height = 5, bg = "lightyellow")
-					label1.pack(side = TOP)
-					label2 = Label(window,text = '以時間搜尋電影請按"1",玩小遊戲請按"2"')
-					label2.pack(side = TOP)
-
-					service = {0:"1",1:"2"}
-					useroption = IntVar()
-					useroption.set(0)
-					for i in range(len(service)):
-						Radiobutton(window,text = service[i],variable = useroption,value = i).pack()
-
-					Button(window2,text = "確定",command = start).pack()
-					window.mainloop()
-
+					window2.destroy()
+					mainpage()
+		
 			else:#要就搜尋
 				def getcomment():
 					x = comment_entry.get()
@@ -258,17 +240,7 @@ def start():
 
 				commenttext = scrolledtext.ScrolledText(window3,width = 50, height = 10, wrap = WORD)
 				commenttext.pack()
-
-				
-
-				
-
 			
-
-
-
-
-
 		#1.下拉選單選時段
 		window2 = Tk()
 		window2.title("請選擇電影開演時段：")
@@ -388,7 +360,7 @@ def start():
 				backornot = input("是否回到主程式? Y/N")
 				if backornot == 'Y' or backornot == 'y':
 					starttoback = False
-					backtomainpage()
+					mainpage()
 					break
 				elif  backornot == 'N' or backornot == 'n':
 					print("BYE")
@@ -418,24 +390,26 @@ def start():
 			notplay_messagebox = messagebox.showwarning("沒電影看還想耍任性?","不玩就不玩啊") 
 			sys.exit(0)
 		
-def backtomainpage():
-	os.system('C:\\Users\\mikem\\Desktop\\PBC-Final-Project-Team-10\\20190109介面.py')
+
 
 #第一視窗
+def mainpage():
+	global window
+	window = Tk()
+	window.title("不上課要幹嘛")
+	window.geometry("300x300")
+	window.maxsize(500,500)
 
-window = Tk()
-window.title("不上課要幹嘛")
-window.geometry("300x300")
-window.maxsize(500,500)
+	label1 = Label(window,text = "使用者您好，請選擇服務項目", width = 30,height = 5, bg = "lightyellow").pack(side = TOP)
+	label2 = Label(window,text = '以時間搜尋電影請按"1",玩小遊戲請按"2"').pack(side = TOP)
+	service = {0:"1",1:"2"}
+	global useroption
+	useroption = IntVar()
+	useroption.set(0)
+	for i in range(len(service)):
+		Radiobutton(window,text = service[i],variable = useroption,value = i).pack()
 
-label1 = Label(window,text = "使用者您好，請選擇服務項目", width = 30,height = 5, bg = "lightyellow").pack(side = TOP)
-label2 = Label(window,text = '以時間搜尋電影請按"1",玩小遊戲請按"2"').pack(side = TOP)
-service = {0:"1",1:"2"}
-useroption = IntVar()
-useroption.set(0)
-for i in range(len(service)):
-	Radiobutton(window,text = service[i],variable = useroption,value = i).pack()
-
-start_button = Button(window,text = "確定",command = start)
-start_button.pack()
-window.mainloop()
+	start_button = Button(window,text = "確定",command = start)
+	start_button.pack()
+	window.mainloop()
+mainpage()
