@@ -1,12 +1,12 @@
-import sys
-import os
+#請把420行改為程式路徑
+import random
 from tkinter import*
 from tkinter import messagebox
 from random import randint
 from tkinter import ttk
 from pprint import pprint
 from tkinter import scrolledtext
-
+import os
 #----------函數程式碼分隔線------------------------------------------------------------------------------------------
 satis = dict()
 
@@ -171,6 +171,8 @@ def satisfaction():
 
 #第二視窗(選遊戲或電影)
 def start():
+	playornot = False
+	starttoback = False
 	window.destroy()
 	i = useroption.get()
 	if i == 0:
@@ -331,7 +333,70 @@ def start():
 	#進入小遊戲分支
 		def Callcmdplay1a2b():
 			window4.destroy()
-			os.system('python3 /Users/chenjingmin/Documents/GitHub/PBC-Final-Project-Team-10/1a2b.py')
+			playornot = True
+			times = 0
+			while playornot:
+				print('注意！你只有10次機會！！')
+				items = [1,2,3,4,5,6,7,8,9,0]
+				random.shuffle(items)
+				items = "".join('%s' %id for id in items)
+				answer = items[0:4]
+					  
+				time = 0
+
+				while time < 10:
+					challenger = input("已嘗試次數：%d 請輸入數字 : " %time)
+					time += 1
+					A = 0
+					B = 0
+						
+					if len(challenger)!= 4 or not challenger.isnumeric() or len({str(chr) for chr in challenger}) != 4 :
+						time -=1
+						print("不符合輸入格式，請重新輸入")
+						
+					else: 
+						for i in range(4):
+							if challenger.find(answer[i], i, i+1) != (-1) :
+								A += 1
+							if challenger.find(answer[i]) != (-1):
+								B += 1
+
+						B -= A
+						print(str(A) + 'A' + str(B) + 'B')
+						if A == 4:
+							print("恭喜你猜中了！")
+							break
+						
+				if A != 4:
+					print('ㄏㄏ你輸了ㄛ')
+
+				playagain = str()
+				while True:
+					playagain = input("要再玩一次嗎？ Y/N")
+					if playagain == 'Y' or playagain == 'y':
+						break
+					elif  playagain == 'N' or playagain == 'n':
+						times += 1
+						if times == 1:
+							playornot = False
+							starttoback = True
+							break
+					else:
+						print("請再輸入一次！")
+
+			while starttoback:
+				backornot = input("是否回到主程式? Y/N")
+				if backornot == 'Y' or backornot == 'y':
+					starttoback = False
+					backtomainpage()
+					break
+				elif  backornot == 'N' or backornot == 'n':
+					print("BYE")
+					starttoback = False
+					break
+				else:
+					print("請再輸入一次！")	
+
 		#1.對話框
 		ask_messagebox = messagebox.askokcancel("準備好了嗎？", "嗨挑戰者！我們來玩1A2B吧！")
 		if ask_messagebox == True:
@@ -352,7 +417,12 @@ def start():
 		else:
 			notplay_messagebox = messagebox.showwarning("沒電影看還想耍任性?","不玩就不玩啊") 
 			sys.exit(0)
+		
+def backtomainpage():
+	os.system('C:\\Users\\mikem\\Desktop\\PBC-Final-Project-Team-10\\20190109介面.py')
+
 #第一視窗
+
 window = Tk()
 window.title("不上課要幹嘛")
 window.geometry("300x300")
@@ -360,7 +430,6 @@ window.maxsize(500,500)
 
 label1 = Label(window,text = "使用者您好，請選擇服務項目", width = 30,height = 5, bg = "lightyellow").pack(side = TOP)
 label2 = Label(window,text = '以時間搜尋電影請按"1",玩小遊戲請按"2"').pack(side = TOP)
-
 service = {0:"1",1:"2"}
 useroption = IntVar()
 useroption.set(0)
