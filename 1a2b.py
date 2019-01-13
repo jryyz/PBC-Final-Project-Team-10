@@ -1,4 +1,5 @@
 import random
+import os
 playornot = True
 
 
@@ -58,7 +59,8 @@ while playornot:
 				break
 		else:
 			print("請再輸入一次！")
-
+def backtomainpage():
+	os.system('C:\\Users\\mikem\\Desktop\\Final-Project-Team-10\\PBC-Final-Project-Team-10\\20190107介面.py')
 while starttoback:
 	backornot = input("是否回到主程式? Y/N")
 	if backornot == 'Y' or backornot == 'y':
